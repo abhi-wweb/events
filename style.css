@@ -1,4 +1,4 @@
-/* ===== GLOBAL ===== */
+/* ==================== GLOBAL ==================== */
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +12,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ===== HEADER ===== */
+/* ==================== HEADER ==================== */
 header {
   display: flex;
   justify-content: space-between;
@@ -51,7 +51,7 @@ nav a:hover {
   color: #845ec2;
 }
 
-/* ===== HERO ===== */
+/* ==================== HERO ==================== */
 .hero {
   height: 80vh;
   background: linear-gradient(135deg, #ffdde1, #ee9ca7);
@@ -91,7 +91,7 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-/* ===== SECTIONS ===== */
+/* ==================== SECTIONS ==================== */
 .section {
   padding: 50px 20px;
   text-align: center;
@@ -107,7 +107,7 @@ nav a:hover {
   background: linear-gradient(120deg, #fdf1ff, #e0f0ff);
 }
 
-/* ===== EVENTS ===== */
+/* ==================== EVENTS ==================== */
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -128,7 +128,7 @@ nav a:hover {
   background: linear-gradient(135deg, #ffdde1, #fbc2eb);
 }
 
-/* ===== SERVICES ===== */
+/* ==================== SERVICES ==================== */
 .services {
   list-style: none;
   max-width: 500px;
@@ -143,30 +143,33 @@ nav a:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== GALLERY ===== */
+/* ==================== GALLERY ==================== */
 .gallery-slider {
   width: 100%;
-  overflow: hidden;
-  padding: 30px 0;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 20px 0;
 }
 
 .gallery-track {
   display: flex;
-  gap: 20px;
-  animation: scrollGallery 25s linear infinite;
+  gap: 25px;
+  padding: 10px 20px;
 }
 
 .img-box {
-  min-width: 200px;
-  border-radius: 20px;
+  min-width: 280px;
+  height: 180px;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+  flex-shrink: 0;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   transition: transform 0.4s ease;
 }
 
 .img-box img {
   width: 100%;
-  height: 150px;
+  height: 100%;
   object-fit: cover;
   display: block;
   transition: transform 0.5s ease;
@@ -180,16 +183,7 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-@keyframes scrollGallery {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-.gallery-slider:hover .gallery-track {
-  animation-play-state: paused;
-}
-
-/* ===== TEAM ===== */
+/* ==================== TEAM ==================== */
 .team-slider {
   width: 100%;
   padding: 50px 0;
@@ -241,7 +235,7 @@ nav a:hover {
   font-weight: 700;
 }
 
-/* ===== CONTACT ===== */
+/* ==================== CONTACT ==================== */
 form {
   max-width: 450px;
   margin: auto;
@@ -291,7 +285,7 @@ button {
   transform: scale(1.05);
 }
 
-/* ===== FOOTER ===== */
+/* ==================== FOOTER ==================== */
 footer {
   background: linear-gradient(135deg, #ffdde1, #fbc2eb);
   padding: 25px;
@@ -299,38 +293,36 @@ footer {
   color: #555;
   font-weight: 500;
 }
-.gallery-slider {
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 20px 0;
+
+/* ==================== RESPONSIVE ==================== */
+
+/* MOBILE */
+@media (max-width: 600px) {
+  header { padding: 12px 20px; }
+  .logo { font-size: 22px; }
+  nav a { margin: 6px; font-size: 14px; }
+  .hero { height: auto; padding: 60px 15px; }
+  .hero h1 { font-size: 28px; }
+  .hero p { font-size: 14px; }
+  .section h2 { font-size: 24px; }
+  .event-card { font-size: 14px; }
+  .img-box { min-width: 260px; height: 160px; }
+  .team-card { width: 100%; max-width: 320px; }
+  button { font-size: 14px; }
 }
 
-.gallery-track {
-  display: flex;
-  gap: 25px;
-  padding: 10px 20px;
+/* TABLET */
+@media (min-width: 601px) and (max-width: 900px) {
+  .hero h1 { font-size: 32px; }
+  .section h2 { font-size: 26px; }
+  .team-card { width: 260px; }
+  .img-box { min-width: 300px; height: 180px; }
 }
 
-.gallery-slider::-webkit-scrollbar {
-  height: 8px;
-}
-
-.gallery-slider::-webkit-scrollbar-thumb {
-  background: #ff4d4d;
-  border-radius: 10px;
-}
-
-.img-box {
-  min-width: 280px;
-  height: 180px;
-  border-radius: 16px;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.img-box img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* LAPTOP / DESKTOP */
+@media (min-width: 901px) {
+  .hero h1 { font-size: 40px; }
+  .section { padding: 70px 60px; }
+  .team-card { width: 280px; }
+  .img-box { min-width: 320px; height: 200px; }
 }
