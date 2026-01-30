@@ -3,18 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dream Events</title>
+  <title>Vivek Events</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.event-card');
+    const popup = document.getElementById('videoPopup');
+    const video = document.getElementById('popupVideo');
+    const closeBtn = document.querySelector('.close');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const videoSrc = card.getAttribute('data-video');
+        video.src = videoSrc;
+        popup.style.display = 'flex';
+        video.play();
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      popup.style.display = 'none';
+      video.pause();
+      video.src = "";
+    });
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        popup.style.display = 'none';
+        video.pause();
+        video.src = "";
+      }
+    });
+  });
+</script>
+
 <body>
 
 <!-- Navbar -->
 <header>
-  <div class="logo">Dream Events</div>
+  <div class="logo">श्री Vivek Events</div>
   <nav>
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="#team">Our Team</a>
     <a href="#events">Events</a>
     <a href="#services">Services</a>
     <a href="#gallery">Gallery</a>
@@ -32,9 +63,9 @@
 
 <!-- ABOUT US -->
 <section id="about" class="section light">
-  <h2>About Dream Events</h2>
+  <h2>About Vivek Events</h2>
   <p style="max-width: 800px; margin: auto; font-size: 18px; line-height: 1.7;">
-    Dream Events is a professional event management company dedicated to
+    Vivek Events is a professional event management company dedicated to
     turning your special moments into unforgettable memories.
     From colorful sky shots and pyro gun shows to weddings, baby showers,
     and grand openings, we deliver creativity, safety, and perfection.
@@ -51,74 +82,31 @@
   </ul>
 </section>
 
-<!-- TEAM -->
-<section id="team" class="section">
-  <h2>Meet Our Team</h2>
-
-  <div class="team-slider">
-    <div class="team-track">
-
-      <div class="team-card">
-        <img src="images/gauravenvent.jpeg">
-        <h3>Gaurav Werulkar</h3>
-        <p>Team Member</p>
-      </div>
-
-      <div class="team-card">
-        <img src="images/ankuevent.jpeg">
-        <h3>Ankush Werulkar</h3>
-        <p>Team Member</p>
-      </div>
-
-      <div class="team-card highlight">
-        <img src="images/vikuevent.jpeg">
-        <h3>Vivek Werulkar</h3>
-        <h3>+91 9322172415</h3>
-        <p>Founder & Event Director</p>
-      </div>
-
-       <div class="team-card">
-        <img src="images/ankevent.jpeg">
-        <h3>Ankit Werulkar</h3>
-        <p>Team Member</p>
-      </div>
-      
-      <div class="team-card">
-        <img src="images/abhievent.jpeg">
-        <h3>Abhishek Wankhade</h3>
-        <p>Team Member</p>
-      </div>
-
-      <div class="team-card">
-        <img src="images/samevent.jpeg">
-        <h3>Samarth Wankhade</h3>
-        <p>Team Member</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
 
 <!-- Events Section -->
 <section id="events" class="section">
   <h2>Our Events</h2>
+   <h3>Click on Events</h3>
+   
   <div class="event-grid">
-    <div class="event-card">🎆 Colourful Sky Shots</div>
-    <div class="event-card">🔥 Cold Fire & Pyro Gun Shows</div>
-    <div class="event-card">🎤 Stage Shows</div>
-    <div class="event-card">👶 Baby Shower</div>
-    <div class="event-card">🏪 Shop Openings</div>
-    <div class="event-card">💍 Engagement Ceremonies</div>
-    <div class="event-card">💒 Wedding Ceremonies</div>
-    <div class="event-card">👶 Baby Welcome</div>
-    <div class="event-card">🎂 Birthday Celebrations</div>
+    <div class="event-card" data-video="videos/color.mp4">🎆 Colourful Sky Shots</div>
+    <div class="event-card" data-video="videos/WhatsApp Video 2026-01-30 at 9.59.34 PM.mp4">🔥 Cold Fire & Pyro Gun Shows</div>
+    <div class="event-card" data-video="videos/stageshow.mp4">🎤 Stage Shows</div>
+    <div class="event-card" data-video="videos/babysevent.mp4">👶 Baby Shower</div>
+    <div class="event-card" data-video="videos/shop.mp4">🏪 Shop Openings</div>
+    <div class="event-card" data-video="videos/engagement.mp4">💍 Engagement Ceremonies</div>
+    <div class="event-card" data-video="videos/bu;oons.mp4">💒 Wedding Ceremonies</div>
+    <div class="event-card" data-video="videos/WhatsApp Video 2026-01-30 at 7.13.10 PM.mp4">👶 Naming Ceremonies</div>
+    <div class="event-card" data-video="videos/birthday.mp4">🎂 Birthday Celebrations</div>
+     <div class="event-card" data-video="videos/WhatsApp Video 2026-01-30 at 7.02.00 PM.mp4">💨 Foam Party</div>
   </div>
 </section>
+
+<!-- Video Popup -->
+<div id="videoPopup" class="popup">
+  <span class="close">&times;</span>
+  <video id="popupVideo" controls autoplay></video>
+</div>
 
 <!-- Services -->
 <section id="services" class="section light">
@@ -160,20 +148,30 @@
 <!-- Contact -->
 <section id="contact" class="section light">
   <h2>Contact Us</h2>
+
   <form id="contactForm">
     <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
     <textarea placeholder="Your Message" required></textarea>
     <button type="submit">Send Message</button>
   </form>
 
-  <!-- Call Button -->
-  <a href="tel:+919322172415" class="call-button">Call Us</a>
+  <!-- Contact Buttons -->
+  <div class="contact-buttons">
+   <a href="tel:+919322172415" class="call-button">📞 Call Us</a>
+
+
+    <a href="https://www.instagram.com/vivek_werulkar_04?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+       target="_blank"
+       class="insta-button">
+       📸Instagram
+    </a>
+  </div>
 </section>
 
 
+
 <footer>
-  <p>© 2026 Dream Events.Design by Abhishek</p>
+  <p>© 2026 Vivek Events.Design by Abhishek</p>
 </footer>
 
 <script src="script.js"></script>

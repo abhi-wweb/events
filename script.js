@@ -1,37 +1,44 @@
-function scrollToContact() {
-  document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
-}
+document.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+  // Smooth scroll to contact section
+  window.scrollToContact = function () {
+    document.getElementById("contact").scrollIntoView({
+      behavior: "smooth"
+    });
+  };
 
-  const name = document.querySelector('input[placeholder="Your Name"]').value;
-  const email = document.querySelector('input[placeholder="Your Email"]').value;
-  const message = document.querySelector('textarea').value;
+  const contactForm = document.getElementById("contactForm");
 
-  const phoneNumber = "919322172415"; // +91 93221 72415
+  if (!contactForm) return; // safety check
 
-  const text =
-    `Hello Dream Events 👋\n\n` +
-    `Name: ${name}\n` +
-    `Email: ${email}\n` +
-    `Message: ${message}`;
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const encodedText = encodeURIComponent(text);
+    const name = document.querySelector('input[placeholder="Your Name"]').value;
+    const message = document.querySelector("textarea").value;
 
-  // Opens WhatsApp APP
-  const whatsappAppURL = `whatsapp://send?phone=${phoneNumber}&text=${encodedText}`;
+    const phoneNumber = "919322172415"; // +91 93221 72415
 
-  // Fallback for desktop / if app not available
-  const whatsappWebURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
+    const text =
+      `Hello Vivek Events 👋\n\n` +
+      `Name: ${name}\n` +
+      `Message: ${message}`;
 
-  // Try app first
-  window.location.href = whatsappAppURL;
+    const encodedText = encodeURIComponent(text);
 
-  // Fallback after 1 second
-  setTimeout(() => {
-    window.open(whatsappWebURL, "_blank");
-  }, 1000);
+    // WhatsApp URLs
+    const whatsappAppURL = `whatsapp://send?phone=${phoneNumber}&text=${encodedText}`;
+    const whatsappWebURL = `https://wa.me/${phoneNumber}?text=${encodedText}`;
 
-  this.reset();
+    // Try WhatsApp App first
+    window.location.href = whatsappAppURL;
+
+    // Fallback for desktop
+    setTimeout(() => {
+      window.open(whatsappWebURL, "_blank");
+    }, 1000);
+
+    this.reset();
+  });
+
 });
